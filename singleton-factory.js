@@ -4,18 +4,18 @@
  * Author Bret Little
  * Version: 0.2
  *
- * This is a utility module for creating singleton modules. It embeds into the singleton instance
+ * This is a utility module for creating singleton modules. It embeds into a singleton instance
  * convenience methods for destroying or re-initializing the singleton module.
  *
  * Require the SingletonFactory as a module dependency.
- * Create a singleton by calling SingletonFactory.create(module, [parent], [params])
+ * Create a singleton by calling SingletonFactory.create(module, [params])
  *      module (required) - The actual module definition, required to create a singleton. The new operator will be called
  *                          on this parameter, make sure it is a constructor function.
  *      params (optional) - Parameters to pass to the new singleton instance's constructor function;
  *
  * Example:
  *
- *  SingletonFactory.create(ModalDialogView, Backbone.View, {})
+ *  SingletonFactory.create(ModalDialogView)
  *
  *
  * Once the singleton is created, whenever the dependency is referenced, the following api is available:
