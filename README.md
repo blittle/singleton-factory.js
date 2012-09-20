@@ -1,0 +1,4 @@
+singletonfactor.js
+==================
+
+SingletonFactory.js
