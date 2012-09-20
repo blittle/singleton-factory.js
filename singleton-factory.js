@@ -34,66 +34,66 @@
  */
 
 (function (root, factory) {
-	if (typeof exports === 'object') {
-		// Node. Does not work with strict CommonJS, but
-		// only CommonJS-like enviroments that support module.exports,
-		// like Node.
-		module.exports = factory(require('b'));
-	} else if (typeof define === 'function' && define.amd) {
-		// AMD. Register as an anonymous module.
-		define([], factory);
-	} else {
-		// Browser globals
-		root.returnExports = factory();
-	}
+    if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like enviroments that support module.exports,
+        // like Node.
+        module.exports = factory(require('b'));
+    } else if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define([], factory);
+    } else {
+        // Browser globals
+        root.returnExports = factory();
+    }
 }(this, function () {
-	"use strict";
+    "use strict";
 
-	var SingletonFactory = {
+    var SingletonFactory = {
 
-		create: function(module, _params) {
+        create: function(module, _params) {
 
-			var ModuleDef = module,
-				params    = _params || {},
-				singletonInitCount, singletonInit, singletonDestroy, tempDef,
-				instance, initCount = 0;
+            var ModuleDef = module,
+                params    = _params || {},
+                singletonInitCount, singletonInit, singletonDestroy, tempDef,
+                instance, initCount = 0;
 
-			singletonInit = function() {
-				instance = new (ModuleDef)(params);
-				initCount++;
-				return instance;
-			};
+            singletonInit = function() {
+                instance = new (ModuleDef)(params);
+                initCount++;
+                return instance;
+            };
 
-			singletonDestroy = function() {
-				instance = null;
-				return instance;
-			};
+            singletonDestroy = function() {
+                instance = null;
+                return instance;
+            };
 
-			singletonInit();
+            singletonInit();
 
-			return {
-				getInstance: function() {
-					if(!instance) {
-						return singletonInit();
-					}
-					return instance;
-				},
+            return {
+                getInstance: function() {
+                    if(!instance) {
+                        return singletonInit();
+                    }
+                    return instance;
+                },
 
-				resetInstance: function() {
-					return singletonInit();
-				},
+                resetInstance: function() {
+                    return singletonInit();
+                },
 
-				destroyInstance: function() {
-					return singletonDestroy();
-				},
+                destroyInstance: function() {
+                    return singletonDestroy();
+                },
 
-				getInitCount: function() {
-					return initCount;
-				}
-			};
-		}
+                getInitCount: function() {
+                    return initCount;
+                }
+            };
+        }
 
-	};
+    };
 
-	return SingletonFactory;
+    return SingletonFactory;
 }));
